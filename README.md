@@ -2,6 +2,14 @@
 
 Schedule blood donations quickly andeasily right from the palm of your hand.
 
+## About APP
+Technology and techniques used in the application: //n
+-provider state management
+-clean code and clean architecture
+-local database "sqflite"
+-local notification
+
+
 ## Diagrams
 
 - UML DIAGRAM
