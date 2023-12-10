@@ -87,7 +87,9 @@ class AuthRemoteDataSource implements BaseAuthDataSource{
   Future<void> logout() async{
     await FirebaseAuth.instance.signOut();
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.remove('userdata');
+    await prefs.remove('userdata');
+    currentuserdata=null;
+    currentusermoreinfo=null;
 
   }
 

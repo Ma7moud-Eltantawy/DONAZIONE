@@ -77,6 +77,7 @@ class Donersremotedatasource implements DonersBaseDataSource{
   Future<RequestResult<List<Requestdatamodel>>> GetRequests({required String id}) async {
     List<Requestdatamodel> Requests=<Requestdatamodel>[];
     try {
+
       QuerySnapshot snapshot = await _firestore.collection("Requests").doc(id).collection(id).get();
 
       for (DocumentSnapshot document in snapshot.docs) {
@@ -96,6 +97,8 @@ class Donersremotedatasource implements DonersBaseDataSource{
 
   @override
   Future<RequestResult> AddRequest({required String reciveid, required Requestdatamodel req}) async {
+    print(currentuserdata!.id);
+    print("reciveid  $reciveid");
     try {
       await _firestore.collection("Requests").doc(reciveid).collection(reciveid).doc(req.id).set(req.toJson());
       return RequestResult(

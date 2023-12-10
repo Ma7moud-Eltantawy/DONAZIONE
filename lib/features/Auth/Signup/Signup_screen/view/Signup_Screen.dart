@@ -112,17 +112,19 @@ class Signup_Screen extends StatelessWidget  {
                           SizedBox(
                             height: width/20,
                           ),
-                        DefaultButton(
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              //controller.login();
-                             controller.CreatenewAccount();
+                        GetBuilder<signup_Controller>(
+                          builder:(con)=>con.loading==true? ButtonLoading(): DefaultButton(
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                //controller.login();
+                               controller.CreatenewAccount();
 
-                            }
-                          },
-                          text: 'Continue',
-                          titleColor: Colors.white,
+                              }
+                            },
+                            text: 'Continue',
+                            titleColor: Colors.white,
 
+                          ),
                         ),
                           TextButton(
                             onPressed: () {
@@ -148,83 +150,7 @@ class Signup_Screen extends StatelessWidget  {
                           ),
 
 
-                         /* CustomTextFormField(
-                            lines: 1,
-                            controller: controller.nameController,
-                            label: 'الاسم بالكامل',
-                            requiredField: true,
-                          ),
-                           SizedBox(
-                            height: width/25,
-                          ),
-                          CustomTextFormField(
-                            lines: 1,
-                            controller: controller.emailController,
-                            label: 'البريد الالكتروني',
-                            requiredField: true,
-                          ),
-                           SizedBox(
-                            height: width/25,
-                          ),
-                          CustomTextFormField(
-                            lines: 1,
-                            controller: controller.passwordController,
-                            label: 'كلمة المرور',
-                            requiredField: true,
-                            isPassword: true,
-                          ),
-                           SizedBox(
-                            height: width/25,
-                          ),
-                          CustomTextFormField(
-                            lines: 1,
-                            controller: controller.confirmpasswordController,
-                            label: 'تأكيد كلمة المرور',
-                            isPassword: true,
-                            requiredField: true,
-                          ),
-                           SizedBox(
-                            height: width/20,
-                          ),
-                          GetBuilder<LoginController>(
-                            builder: (cc) {
-                              if (cc.loading) {
-                                return const ButtonLoading();
-                              } else {
-                                return DefaultButton(
-                                  onPressed: () {
-                                    if (_formKey.currentState!.validate()) {
-                                      //controller.login();
-                                    }
-                                  },
-                                  text: 'إستمرار',
-                                  titleColor: Colors.white,
 
-                                );
-                              }
-                            },
-                          ),
-
-                          TextButton(
-                            onPressed: () {
-                              /*Get.to(
-                              () => Signupscreen(),
-                          transition: kTransition1,
-                          duration: kTransitionDuration,
-                        );*/
-                            },
-                            child:  Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text('لديك حساب بالفعل ؟',style: TextStyle(color: ColorsManager.primary),),
-                                InkWell(
-                                    onTap: (){
-
-                                    },
-                                    child: Text('تسجيل الدخول',style: TextStyle(color: ColorsManager.red),)),
-                              ],
-                            ),
-                          ),*/
                         ],
                       ),
                     ),

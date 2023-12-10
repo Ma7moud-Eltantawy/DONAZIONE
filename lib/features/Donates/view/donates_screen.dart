@@ -210,14 +210,17 @@ class _Donates_ScreenState extends State<Donates_Screen> {
                                 children: [
                                   Icon(IconBroken.Location,size: width/40,color: ColorsManager.red,),
                                   SizedBox(width: width/120,),
-                                  Text("${AllUsersData[index].location!}",
-                                    softWrap: true,
-                                    overflow: TextOverflow.ellipsis,
+                                  Container(
+                                    width: width/2.5,
+                                    child: Text("${AllUsersData[index].location!}",
+                                      softWrap: true,
+                                      overflow: TextOverflow.ellipsis,
 
-                                    style: TextStyle(
-                                      fontSize: width/40,
-                                      fontWeight: FontWeight.w200
-                                  ),),
+                                      style: TextStyle(
+                                        fontSize: width/40,
+                                        fontWeight: FontWeight.w200
+                                    ),),
+                                  ),
                                 ],
                               )
                             ],

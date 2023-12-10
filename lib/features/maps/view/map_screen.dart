@@ -190,8 +190,8 @@ class _LocScreenState extends State<LocScreen> {
               child: GetBuilder<MapController>(
                 builder: (con) => DefaultButton(
                   onPressed: () {
-                    print(con.myLoc!);
-                    //Get.to(bloodgroup_Screen());
+
+                    Get.to(bloodgroup_Screen());
                   },
                   text: 'Save',
                   titleColor: Colors.white,

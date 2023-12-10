@@ -13,6 +13,7 @@ import '../../../core/constants.dart';
 import '../../../core/styles/icons.dart';
 import '../../../widgets/Expanded_widget/Expandle_widget.dart';
 import '../../Donates/view/donates_screen.dart';
+import '../../donation_Request/Crete_request/view/create_request_screen/create_request_design.dart';
 import '../Contaroller/search_controller.dart';
 
 
@@ -41,17 +42,6 @@ class Search_Screen extends StatelessWidget {
           elevation: 0,
           centerTitle: true,
           backgroundColor: Colors.white,
-          leading: IconButton(
-            icon:  Icon(
-              IconBroken.Arrow___Left_2,
-              size: 35,
-              color: ColorsManager.red,
-            ),
-            onPressed: () {
-              Navigator.of(context).pop();
-
-            },
-          ),
           actions: [
             InkWell(
               onTap: () {
@@ -233,128 +223,129 @@ class Search_Screen extends StatelessWidget {
                   shrinkWrap: true,
                   children: List.generate(
                     con.usedusers.length,
-                        (index) => InkWell(
-                      onTap: () {
+                        (index) => Padding(
+                          padding: EdgeInsets.symmetric(vertical: height/200),
+                          child: Slidable(
+                            startActionPane: ActionPane(
+                              // A motion is a widget used to control how the pane animates.
+                              motion: ScrollMotion(),
 
-                        // Handle onTap action
-                        // Get.to(controller.Category_list[index].navscreen, transition: kTransition2, duration: kTransitionDuration);
-                      },
-                      child:Slidable(
-                        startActionPane: ActionPane(
-                          // A motion is a widget used to control how the pane animates.
-                          motion: ScrollMotion(),
-
-                          // All actions are defined in the children parameter.
-                          children: [
-                            // A SlidableAction can have an icon and/or a label.
-                            SlidableAction(
-                              onPressed:(BuildContext context)=>luncherfunc(context: context,phonenumber: "01015876911") ,
-                              backgroundColor: ColorsManager.red,
-                              foregroundColor: Colors.white,
-                              icon: IconBroken.Plus,
-                              label: 'Request',
-                              spacing: 1,
+                              // All actions are defined in the children parameter.
+                              children: [
+                                // A SlidableAction can have an icon and/or a label.
+                                SlidableAction(
+                                  onPressed:(BuildContext context)=>Get.to(Routing_request(Reciveid: AllUsersData[index].id.toString(),),transition: kTransition2,duration: kTransitionDuration ),
+                                  backgroundColor: ColorsManager.red,
+                                  foregroundColor: Colors.white,
+                                  icon: IconBroken.Plus,
+                                  label: 'Request',
+                                  spacing: 1,
+                                ),
+                                SlidableAction(
+                                  onPressed:(BuildContext context)=>luncherfunc(context: context,phonenumber: AllUsersData[index].phone!) ,
+                                  backgroundColor: ColorsManager.blue,
+                                  foregroundColor: Colors.white,
+                                  icon: Icons.phone,
+                                  label: 'Call Now',
+                                ),
+                              ],
                             ),
-                            SlidableAction(
-                              onPressed:(BuildContext context)=>luncherfunc(context: context,phonenumber: AllUsersData[index].phone!) ,
-                              backgroundColor: ColorsManager.blue,
-                              foregroundColor: Colors.white,
-                              icon: Icons.phone,
-                              label: 'Call Now',
-                            ),
-                          ],
-                        ),
-                        child: Container(
-                          alignment: Alignment.center,
-                          width: double.infinity,
-                          height: height/8.5,
-                          clipBehavior: Clip.antiAlias,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0),
-                            color: Colors.grey[50],),
-                          child: ListTile(
-                            contentPadding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                            tileColor: Colors.grey[50],
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            leading:  Container(
+                            child: Container(
+                              alignment: Alignment.center,
+                              width: double.infinity,
+                              height: height/8.5,
                               clipBehavior: Clip.antiAlias,
                               decoration: BoxDecoration(
-                                color: Colors.white,
                                 borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              width: width/5,
-                              height: double.infinity,
-                              child: CachedNetworkImage(
-                                imageUrl:con.usedusers[index].pic.toString(),
-                                fit: BoxFit.cover,
-                                progressIndicatorBuilder:
-                                    (context, url, downloadProgress) => Center(
-                                  child: CircularProgressIndicator(
-                                    strokeWidth: 1.5,
-                                    color: ColorsManager.red,
+                                color: Colors.grey[50],),
+                              child: ListTile(
+                                contentPadding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                                tileColor: Colors.grey[50],
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                leading:  Container(
+                                  clipBehavior: Clip.antiAlias,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  width: width/5,
+                                  height: double.infinity,
+                                  child: CachedNetworkImage(
+                                    imageUrl:con.usedusers[index].pic.toString(),
+                                    fit: BoxFit.cover,
+                                    progressIndicatorBuilder:
+                                        (context, url, downloadProgress) => Center(
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 1.5,
+                                        color: ColorsManager.red,
+                                      ),
+                                    ),
+                                    errorWidget: (context, url, error) => Icon(
+                                      Icons.error,
+                                      color: ColorsManager.red,
+                                    ),
                                   ),
                                 ),
-                                errorWidget: (context, url, error) => Icon(
-                                  Icons.error,
-                                  color: ColorsManager.red,
-                                ),
-                              ),
-                            ),
-                            title: Container(
-                              height: height/20, // Adjust height as needed
-                              width: width/5, // Adjust width as needed
-                              clipBehavior: Clip.antiAlias,
-                              decoration: BoxDecoration(
+                                title: Container(
+                                  height: height/20, // Adjust height as needed
+                                  width: width/5, // Adjust width as needed
+                                  clipBehavior: Clip.antiAlias,
+                                  decoration: BoxDecoration(
 
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Text("${con.usedusers[index].name!}",style: TextStyle(
-                                      fontSize: width/35,
-                                      fontWeight: FontWeight.w300
-                                  ),),
-                                  Row(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                                     children: [
-                                      Icon(IconBroken.Location,size: width/40,color: ColorsManager.red,),
-                                      SizedBox(width: width/120,),
-                                      Text("${con.usedusers[index].location!}",
-                                        softWrap: true,
-                                        overflow: TextOverflow.ellipsis,
+                                      Text("${con.usedusers[index].name!}",style: TextStyle(
+                                          fontSize: width/35,
+                                          fontWeight: FontWeight.w300
+                                      ),),
+                                      Row(
+                                        children: [
+                                          Icon(IconBroken.Location,size: width/40,color: ColorsManager.red,),
+                                          SizedBox(width: width/120,),
 
-                                        style: TextStyle(
-                                            fontSize: width/40,
-                                            fontWeight: FontWeight.w200
-                                        ),),
+                                          Container(
+                                            width: width/2.5,
+                                            child: Text("${con.usedusers[index].location!}",
+                                              softWrap: true,
+                                              overflow: TextOverflow.ellipsis,
+
+                                              style: TextStyle(
+                                                  fontSize: width/40,
+                                                  fontWeight: FontWeight.w200
+                                              ),),
+                                          ),
+                                        ],
+                                      )
                                     ],
-                                  )
-                                ],
+                                  ),
+                                ),
+                                trailing:Container(
+                                  alignment: Alignment.centerLeft,
+                                  height: height/18,
+                                  width: width/13,
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          image: AssetImage("assets/images/Blood Group.png",),
+                                          fit: BoxFit.fill
+                                      )
+                                  ),
+                                  child: Center(child: Text("${con.usedusers[index].bloodtype!}",textDirection: TextDirection.ltr,style: TextStyle(
+                                      fontSize: width/40,
+                                      color: Colors.white
+                                  ),)),
+                                ) ,
                               ),
                             ),
-                            trailing:Container(
-                              alignment: Alignment.centerLeft,
-                              height: height/18,
-                              width: width/13,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage("assets/images/Blood Group.png",),
-                                      fit: BoxFit.fill
-                                  )
-                              ),
-                              child: Center(child: Text("${con.usedusers[index].bloodtype!}",textDirection: TextDirection.ltr,style: TextStyle(
-                                  fontSize: width/40,
-                                  color: Colors.white
-                              ),)),
-                            ) ,
                           ),
                         ),
-                      ),
-                    ),
                   ),
+
                 ),
 
               ],

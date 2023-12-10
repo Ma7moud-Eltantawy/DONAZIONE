@@ -157,10 +157,16 @@ class My_profile extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(width/50)
               ),
-              child: ListTile(
-                leading:Icon(IconBroken.Logout,color: ColorsManager.red,size: width/13,) ,
-                title: Text("Sign out",textDirection: TextDirection.ltr,),
+              child: InkWell(
+                onTap: ()
+                {
+                  con.logout();
+                },
+                child: ListTile(
+                  leading:Icon(IconBroken.Logout,color: ColorsManager.red,size: width/13,) ,
+                  title: Text("Sign out",textDirection: TextDirection.ltr,),
 
+                ),
               ),
             ),
             SizedBox(height: height/10),

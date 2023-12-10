@@ -243,10 +243,12 @@ class bloodgroup_Screen extends StatelessWidget {
             ),
           ),
 
-          DefaultButton(onPressed: ()async{
-            Get.to(MoreInformationScreen());
+          GetBuilder<signup_Controller>(
+            builder:(con)=>con.loading==true? ButtonLoading(): DefaultButton(onPressed: ()async{
+              Get.to(MoreInformationScreen());
 
-          }, text: "Done")
+            }, text: "Done"),
+          )
 
 
         ],

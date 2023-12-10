@@ -65,7 +65,7 @@ class Requests_Listview extends StatelessWidget {
                         Text("Location:",style: TextStyle(color: Colors.black38),),
                         Container(
                             width: width/2.5,
-                            child: Text(Requests[0].lang!,overflow: TextOverflow.ellipsis,softWrap: true,maxLines: 1,)),
+                            child: Text(Requests[0].location!,overflow: TextOverflow.ellipsis,softWrap: true,maxLines: 1,)),
 
                         SizedBox(height:height/250,),
                         Container(
@@ -97,16 +97,6 @@ class Requests_Listview extends StatelessWidget {
                           child: Center(child: Text(Requests[0].bloodtype!,textDirection: TextDirection.ltr,style: TextStyle(
                               color: Colors.white
                           ),)),
-                        ),
-                        InkWell(
-                          overlayColor:MaterialStateProperty.all(Colors.red),
-                          onTap: (){
-                            
-                          },
-                          child: Text("Donate",style: TextStyle(
-                            color: ColorsManager.red,
-                            fontWeight: FontWeight.bold
-                          ),),
                         ),
 
                       ],

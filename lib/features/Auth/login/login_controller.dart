@@ -53,13 +53,13 @@ class LoginController extends GetxController {
     Succes_toast(ctx: ctx, height: MediaQuery.of(ctx).size.height, width: MediaQuery.of(ctx).size.width, desc: "Login Succesed");
   }
 
-  saveUserInLocal({required String id}) {
-    _remmoteDataSource.Getuserdata(id:id ).then((value){
-      _remmoteDataSource.SaveuserinDB(user: value.data!);
+  saveUserInLocal({required String id}) async{
+    await _remmoteDataSource.Getuserdata(id:id ).then((value)async{
+      await _remmoteDataSource.SaveuserinDB(user: value.data!);
     });
   }
-  Getdatafromlocal({required String id}) {
-    _remmoteDataSource.getuserfromDB().then((value) {
+  Getdatafromlocal({required String id}) async{
+    await _remmoteDataSource.getuserfromDB().then((value) {
       _remmoteDataSource.Getuserdata(id:value.data!.id!);
     });
 

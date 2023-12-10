@@ -25,7 +25,9 @@ import '../../Signup_screen/controller/Signup_Controller.dart';
 class moreInfoController extends GetxController{
   XFile? imgfile;
   bool loading = false;
-  Signup_Screen con2=Get.put(Signup_Screen());
+  signup_Controller con2=Get.put(signup_Controller());
+  MapController con3=Get.put(MapController());
+
 
 
   final BaseAuthDataSource _remmoteDataSource = AuthRemoteDataSource();
@@ -61,14 +63,18 @@ class moreInfoController extends GetxController{
   //Signin function
 
   Future<void> uploaddata({ required BuildContext context,required double height,required double width}) async{
+    changeLoadingValue();
 
     _remmoteDataSource.Uploadimgtostorage(img: imgfile!).then((value) async {
+
+      print(con3.myLoc);
+
       if(value.requestState==RequestState.success)
       {
-        print(con2.controller.nameController);
-        createuserdata(id: con2.controller.userid.toString()).whenComplete(() async {
-          await uploadmoreinfo(id: con2.controller.userid, img: value.data!);
-          await _remmoteDataSource.Getuserdata(id:con2.controller.userid).then((value){
+        print(con2.nameController);
+        createuserdata(id: con2.userid.toString()).whenComplete(() async {
+          await uploadmoreinfo(id: con2.userid, img: value.data!);
+          await _remmoteDataSource.Getuserdata(id:con2.userid).then((value){
             //print(value.data!.numberofdonation);
             try{
               _remmoteDataSource.cleanDB();
@@ -76,7 +82,7 @@ class moreInfoController extends GetxController{
               _remmoteDataSource.getuserfromDB().then((value) async {
                 if(value.requestState!=RequestState.failed)
                 {
-                  await _remmoteDataSource.Getmoreinformationuser(id: con2.controller.userid);
+                  await _remmoteDataSource.Getmoreinformationuser(id: con2.userid);
                   Get.offAll(MainScreen(),transition: kTransition2,duration: kTransitionDuration);
                   Succes_toast(ctx: context, height: height, width: width, desc: "Succes sign in");
 
@@ -103,15 +109,13 @@ class moreInfoController extends GetxController{
       }
 
     });
+    changeLoadingValue();
+    update();
 
   }
 
 
 
-  Signupwithoutimg()
-  {
-
-  }
 
   Future<void>createuserdata({required id})
   async {
@@ -119,15 +123,15 @@ class moreInfoController extends GetxController{
     Userdatamodel(
 
       id: id,
-      name: con2.controller.nameController.text,
-      bloodtype: con2.controller.blood_groub[con2.controller.blood_type_index!],
-      location: con2.controller.currenttloc,
-      weight: con2.controller.current_weight.toString(),
-      email: con2.controller.emailController.text,
-      phone: con2.controller.phonecontroller.text,
+      name: con2.nameController.text,
+      bloodtype: con2.blood_groub[con2.blood_type_index!],
+      location: con3.myLoc,
+      weight: con2.current_weight.toString(),
+      email: con2.emailController.text,
+      phone: con2.phonecontroller.text,
       open_ofdonation: true,
-      lang: con2.controller.currentlatlng.longitude.toString(),
-      lat: con2.controller.currentlatlng.longitude.toString(),
+      lang: con3.currentLatLng!.longitude.toString(),
+      lat: con3.currentLatLng!.longitude.toString(),
       fcmtoken: "token",
 
     ));
@@ -146,10 +150,6 @@ class moreInfoController extends GetxController{
     );
   }
 
-  Future<void>Getuserdata({required String id})
-  async {
 
-
-  }
 
 }

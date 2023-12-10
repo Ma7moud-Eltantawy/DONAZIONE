@@ -10,7 +10,7 @@ class Requestdatamodel extends RequestData{
     return Requestdatamodel(
 
       name: json['name'].toString(),
-      bloodtype: json['blood_type'].toString(),
+      bloodtype: json['bloodtype'].toString(),
       location: json['location'].toString(),
       phone:json['phone'].toString(),
       id: json['id'].toString(),

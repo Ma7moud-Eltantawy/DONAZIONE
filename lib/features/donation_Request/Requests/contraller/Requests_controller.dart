@@ -21,11 +21,19 @@ class Requests_controller extends GetxController{
     // TODO: implement onInit
     super.onInit();
     Change_loading();
-    await _donorremotedatasource.GetRequests(id:currentuserdata!.id.toString()).then((value){
-      Requests=value.data!.where((element) => element.donated==false).toList();
+    try{
+      await _donorremotedatasource.GetRequests(id:currentuserdata!.id.toString()).then((value){
+        Requests=value.data!.where((element) => element.donated==false).toList();
 
-      Change_loading();
-    });
+
+      });
+    }
+    catch(e)
+    {
+
+    }
+    Change_loading();
+
 
     update();
     
@@ -34,10 +42,17 @@ class Requests_controller extends GetxController{
   void Adddonate({required String id}) async
   {
     print(id);
+    try{
+      await _donorremotedatasource.Adddonate(reciveid: id);
+      onInit();
+      update();
+    }
+    catch(e)
+    {
 
-    await _donorremotedatasource.Adddonate(reciveid: id);
-    onInit();
-    update();
+    }
+
   }
-  
+
+
 }

@@ -1,3 +1,4 @@
+import 'package:blood_donar/core/constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -59,7 +60,7 @@ class Acceptation_Screen extends StatelessWidget {
                       radius: 22.5,
                       child: CachedNetworkImage(
                         imageUrl:
-                        "Provider.of<shared_pref_prov>(context,listen: false).user_data!.data!.image.toString()",
+                       currentusermoreinfo!.pic.toString(),
                         placeholder: (context, url) => Center(
                             child: CircularProgressIndicator(
                               color: ColorsManager.red,

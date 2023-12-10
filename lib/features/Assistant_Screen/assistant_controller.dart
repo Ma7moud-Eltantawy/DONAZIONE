@@ -36,6 +36,7 @@ class AssistantController extends GetxController {
     print(msgController.text.toString());
     if (msgController.text.isNotEmpty) {
       msgs.add(MsgData(sendByMe: true, msgTxt: msgsend));
+      update();
       scrollToEnd();
       msgController.clear();
       print(msgController.text.trim());

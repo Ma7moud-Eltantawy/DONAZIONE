@@ -29,15 +29,19 @@ class signup_Controller extends GetxController{
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool loading = false;
+  bool bloodloading = false;
   late String userid;
-  late String currenttloc;
-  late LatLng currentlatlng;
+
 
   //bloodgroub_screen variables
   List <String>blood_groub=["A+","O+","B+","Ab+","A-","O-","B-","Ab-"];
   double current_weight=0;
   int ? blood_type_index;
   changeLoadingValue() {
+    loading = !loading;
+    update();
+  }
+  changebloodLoadingValue() {
     loading = !loading;
     update();
   }
@@ -58,8 +62,7 @@ class signup_Controller extends GetxController{
 
     });
     changeLoadingValue();
-    currenttloc=con2.myLoc.toString();
-    currentlatlng=con2.currentLatLng!;
+
 
     update();
 

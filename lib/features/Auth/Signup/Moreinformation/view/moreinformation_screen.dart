@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:animate_do/animate_do.dart';
 import 'package:blood_donar/features/Auth/Signup/Moreinformation/contraller/moreinfocontroller.dart';
+import 'package:blood_donar/widgets/button_loading.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:path/path.dart' as path;
 
@@ -93,7 +94,7 @@ class MoreInformationScreen extends StatelessWidget {
                                           )
                                               : DecorationImage(
                                             image: FileImage(File(con.imgfile!.path)),
-                                            fit: BoxFit.cover,
+                                            fit: BoxFit.fill,
                                           ),
                                           shape: BoxShape.circle,
                                           border: Border.all(color: ColorsManager.red.withOpacity(.3), width: width / 200),
@@ -325,71 +326,41 @@ class MoreInformationScreen extends StatelessWidget {
 
 
 
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: width / 28),
-                      child: Mbutton(
-                        width: width,
-                        height: height,
-                        func:()=> ()async{
-                          print("mm");
-                          con.uploaddata(context: context, height: height, width: width);
+                    GetBuilder<moreInfoController>(
+                        builder:(con)=>con.loading? ButtonLoading(): Padding(
+                        padding: EdgeInsets.symmetric(horizontal: width / 28),
+                        child: Mbutton(
+                          width: width,
+                          height: height,
+                          func:()=> ()async{
+
+                            con.uploaddata(context: context, height: height, width: width);
 
 
-                          /*Future<String> uploadImageToFirebaseStorage(String filePath) async {
+                            /*Future<String> uploadImageToFirebaseStorage(String filePath) async {
 
-                          }*/
-
-
+                            }*/
 
 
-                        },
-                        colors: [
-                          ColorsManager.red,
-                          Color.fromRGBO(255, 41, 41, 1.0),
-                          Color.fromRGBO(255, 75, 75, 1),
-                          Color.fromRGBO(255, 90, 90, 1),
-                        ],
-                        txt: "Save data & Signin",
-                        wid: Icon(IconBroken.Arrow___Right_2, color: Colors.white, size: height / 30),
-                        txtcolor: ColorsManager.white,
+
+
+                          },
+                          colors: [
+                            ColorsManager.red,
+                            Color.fromRGBO(255, 41, 41, 1.0),
+                            Color.fromRGBO(255, 75, 75, 1),
+                            Color.fromRGBO(255, 90, 90, 1),
+                          ],
+                          txt: "Save data & Signin",
+                          wid: Icon(IconBroken.Arrow___Right_2, color: Colors.white, size: height / 30),
+                          txtcolor: ColorsManager.white,
+                        ),
                       ),
                     ),
                     SizedBox(height: height / 80),
 
                     SizedBox(height: height / 320,),
-                    Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        textDirection: TextDirection.ltr,
-                        children: [
-                          Text(
-                            "do you wouldn't add your data info ?",
-                            textDirection: TextDirection.ltr,
-                            style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontSize: width / 30,
-                              color: Colors.black26,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          SizedBox(width: width / 35,),
-                          GestureDetector(
-                            onTap: () {
-                              //Navigator.of(context).pushNamed(Login_Screen.scid);
-                            },
-                            child: Text(
-                              "Skip",
-                              textDirection: TextDirection.ltr,
-                              style: TextStyle(
-                                fontSize: width / 28,
-                                color: ColorsManager.red,
-                                fontWeight: FontWeight.w600,
 
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
                   ],
                 ),
               );
