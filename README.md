@@ -3,11 +3,20 @@
 Schedule blood donations quickly andeasily right from the palm of your hand.
 
 ## About APP
-Technology and techniques used in the application: //n
--provider state management
+Technology and techniques used in the application: 
+-GETx state management
 -clean code and clean architecture
--local database "sqflite"
--local notification
+-local database "Shared prefrences"
+-Google maps
+_Firebase Auth
+_Firebase Storage
+_Firebase database
+_chatgpt turbo 3.5 Api
+-geolocator
+-url_luncher
+-maps_luncher
+-Shimmer for loading
+-dio package
 
 
 ## Diagrams
